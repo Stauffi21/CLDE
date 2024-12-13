@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <!-- Tabs for category selection -->
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
+      <mat-tab *ngFor="let category of categories" [label]="category | titlecase"></mat-tab>
+  </mat-tab-group>
+
+  <!-- Optional: Ein-/Ausklapp-Button für Einstellungen -->
+  <button class="btn btn-primary mb-3" (click)="toggleSettings()">
+      {{ showSettings ? 'Einstellungen ausblenden' : 'Einstellungen anzeigen' }}
+  </button>
+
+  <!-- Einstellungsbereich, der ein- und ausgeklappt werden kann -->
+  <div *ngIf="showSettings" class="row">
+      <!-- API-Auswahl -->
+      <div class="col-md-6">
+          <div class="form-group">
+              <label for="apiSelect" class="form-label">Nachrichtenquelle wählen:</label>
+              <select id="apiSelect" class="form-select" [(ngModel)]="selectedApi" (change)="fetchNews()">
+                  <option value="newsapi">News API</option>
+                  <option value="currentsapi">Currents API</option>
+              </select>
+          </div>
+      </div>
+
+      <!-- Sprachauswahl -->
+      <div class="col-md-6 mt-3">
+          <div class="form-group">
+              <label for="languageSelect" class="form-label">Sprache wählen:</label>
+              <select id="languageSelect" class="form-select" [(ngModel)]="selectedLanguage" (change)="fetchNews()">
+                  <option value="de">Deutsch</option>
+                  <option value="en">Englisch</option>
+              </select>
+          </div>
+      </div>
+  </div>
+
+  <!-- Ausgabe der Nachrichten nur, wenn articles definiert ist und eine Länge > 0 hat -->
+  <div *ngIf="articles && articles.length > 0" class="mt-4">
+      <h3 class="mb-3">
+          Nachrichten in {{ selectedCategory | titlecase }} - Sprache: {{ selectedLanguage.toUpperCase() }}
+          ({{ selectedApi === 'newsapi' ? 'News API' : 'Currents API' }})
+      </h3>
+      <div class="row">
+          <div *ngFor="let article of articles" class="col-md-4 mb-4">
+              <a [href]="article.url" target="_blank" class="text-decoration-none">
+                  <div class="card h-100">
+                      <img
+                          [src]="article.urlToImage || article.image"
+                          (error)="setPlaceholderImage($event)"
+                          class="card-img-top"
+                          alt="News Image"
+                      />
+                      <div class="card-body">
+                          <h5 class="card-title">{{ article.title }}</h5>
+                          <p class="card-text">{{ article.description }}</p>
+                      </div>
+                  </div>
+              </a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Nachricht, wenn keine Artikel gefunden wurden -->
+  <div *ngIf="articles && articles.length === 0" class="mt-4 text-center">
+      <p>Keine Nachrichten gefunden. Bitte passen Sie Ihre Auswahl an.</p>
+  </div>
+</div>

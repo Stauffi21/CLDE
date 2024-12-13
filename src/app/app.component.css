@@ -1,0 +1,24 @@
+/* Ensure the app container fills the screen */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Main content should grow and fill the space */
+.content {
+    flex: 1; /* Fills available vertical space */
+    padding: 1rem; /* Optional padding */
+    box-sizing: border-box; /* Ensure padding is included in height calculation */
+}
+
+/* Footer Styling */
+app-footer {
+    background-color: #7F8CD9; /* Footer background */
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    width: 100%; /* Ensure footer spans full width */
+    position: sticky; /* Stay visible at the bottom */
+    bottom: 0; /* Position at the bottom */
+}

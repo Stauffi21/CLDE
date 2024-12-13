@@ -1,0 +1,57 @@
+/* General body and HTML styles */
+body, html {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+/* News List */
+#newsList {
+    margin-top: 20px;
+    /* Additional adjustments for the news display */
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #7F8CD9;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #69839f;
+}
+
+/* Spacing between the category tabs and settings */
+mat-tab-group {
+    margin-bottom: 1rem; /* Adds space between tabs and settings */
+    background-color: #7F8CD9;
+}
+
+
+/* Position tabs right under the header */
+.container {
+    margin-top: 0; /* Reset top margin for container */
+    padding-top: 20px; /* Adjust spacing between header and tabs */
+}
+
+/* Styling for the card (articles) */
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}

@@ -1,0 +1,57 @@
+/* Header Styling */
+.header {
+    width: 98vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+}
+
+/* Center Logo Container */
+.logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+/* Logo Styling */
+.header-logo {
+    width: 400px; /* Increase the width */
+    height: auto; /* Maintain aspect ratio */
+    
+}
+/* Adjust Logo Size for Smaller Screens */
+@media (max-width: 768px) {
+    .header-logo {
+        width: 200px; /* Smaller size for tablets or medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .header-logo {
+        width: 100px; /* Even smaller size for mobile devices */
+    }
+}
+
+
+/* Zufallsartikel-Button Styling */
+.btn-primary {
+    margin-left: auto; /* Push the button to the right */
+    background-color: #7F8CD9;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #69839f;
+}

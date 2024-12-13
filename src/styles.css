@@ -1,0 +1,96 @@
+/* styles.css */
+/* Stile für den verschwommenen Hintergrund */
+body.modal-open {
+  overflow: hidden; /* Verhindert das Scrollen der Seite */
+}
+
+body.modal-open .app-background {
+  filter: blur(5px); /* Wendet den Unschärfe-Effekt an */
+  transition: filter 0.3s; /* Sanfte Übergangsanimation für den Unschärfe-Effekt */
+}
+
+/* Positionierung der Nickname- und Button-Container in der oberen rechten Ecke der Chatbox */
+.nickname-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Abstand zwischen Nickname und Button */
+}
+
+/* Hintergrundfarbe für den Header */
+/* Anpassung des gesamten Modals und seiner Container */
+
+.modal-dialog {
+  border: none !important; /* Entfernt alle Ränder vom Modal-Dialog */
+  background-color: transparent !important; /* Transparent, um keine weiße Farbe zu übernehmen */
+  margin: 0 auto; /* Zentriert das Modal */
+}
+
+.modal-content {
+  background-color: #e0f7fa !important; /* Einheitliche Hintergrundfarbe */
+  border: none !important; /* Entfernt Rand von modal-content */
+  border-radius: 10px !important; /* Runde Ecken für ein modernes Design */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important; /* Schatten für Tiefe */
+}
+
+/* Optional: sicherstellen, dass Header und Footer dieselbe Farbe und keinen Rand haben */
+.modal-header, .modal-footer {
+  background-color: #e0f7fa !important;
+  border: none !important;
+}
+
+/* Modal-Body ebenfalls anpassen */
+.modal-body {
+  background-color: #e0f7fa !important;
+}
+
+/* Anpassung für Modal-Titel und Text */
+.modal-title {
+  color: #0277bd; /* Dunklerer Farbton für besseren Kontrast */
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important; /* Halbtransparenter, dunkler Hintergrund */
+}
+
+/* Eingabefeld anpassen, damit es zum Modal passt */
+.form-control {
+  border: 2px solid #b2ebf2;
+  border-radius: 10px;
+  padding: 0.5rem;
+  transition: border-color 0.3s ease;
+  background-color: #ffffff; /* Weißer Hintergrund für Kontrast */
+}
+
+/* Fokus-Effekt für das Eingabefeld */
+.form-control:focus {
+  border-color: #039be5;
+  box-shadow: 0 0 5px rgba(3, 155, 229, 0.5);
+  outline: none;
+}
+
+.btn.btn-custom {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #039be5;
+  color: #ffffff;
+  border: none;
+  border-radius: 15px;
+  border-color: #16469a; /* Randfarbe */
+  padding: 0.3rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn.btn-custom:hover {
+  transform: scale(1.05);
+  background-color: #0277bd;
+  transition: transform 0.3s ease;
+  color: #ffffff;
+}
+

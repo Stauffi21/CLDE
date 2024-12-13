@@ -1,0 +1,15 @@
+.footer {
+    background-color: #7F8CD9;
+    height: 6vh;
+    width: 100vw; /* Stellt sicher, dass der Footer die gesamte Bildschirmbreite einnimmt */
+    position: relative; /* Damit er den gesamten Bildschirm füllt, ohne fest positioniert zu sein */
+    left: 50%; /* Korrigiert die Position für volle Breite */
+    transform: translateX(-50%); /* Zentriert den Footer auf dem Bildschirm */
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
