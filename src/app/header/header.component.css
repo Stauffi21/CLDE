@@ -34,7 +34,7 @@
 
 @media (max-width: 576px) {
     .header-logo {
-        width: 100px; /* Even smaller size for mobile devices */
+        width: 150px; /* Even smaller size for mobile devices */
     }
 }
 
@@ -45,13 +45,31 @@
     background-color: #7F8CD9;
     border: none;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem; /* Adjusted padding for better spacing */
     font-size: 1rem;
     cursor: pointer;
     border-radius: 0.25rem;
     transition: background-color 0.3s ease;
+    text-align: center; /* Center the text */
+    white-space: normal; /* Allow text wrapping */
+    line-height: 1.5; /* Better spacing between lines */
+    max-width: 150px; /* Limit width to encourage wrapping */
+    display: inline-block; /* Prevent full-width stretching */
 }
 
 .btn-primary:hover {
-    background-color: #69839f;
+    background-color: #5c6cc6;
+}
+
+/* Break Text into Two Lines */
+.random-article-button {
+    white-space: normal; /* Enable text wrapping */
+    text-align: center; /* Center the text inside the button */
+    line-height: 1.5; /* Better spacing between lines */
+    word-break: break-word; /* Ensure long words can break onto new lines */
+}
+
+.header {
+background-color: white;
+
 }

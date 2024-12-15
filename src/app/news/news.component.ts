@@ -18,7 +18,7 @@ export class NewsComponent implements OnInit {
   private fetchSubject = new Subject<void>();
   isFetching = false;
 
-  // Categories for tabs
+  // Kategorien, die in den Tabs angezeigt werden
   categories: string[] = [
     'business',
     'entertainment',
@@ -28,7 +28,11 @@ export class NewsComponent implements OnInit {
     'sports',
     'technology',
   ];
-  selectedTabIndex = 2; // Default index for "general" category
+  selectedTabIndex = 2; // Standardtab-Index (entspricht der Kategorie "general")
+
+  // Sprachen für die APIs
+  private currentsLanguages = ['de', 'en'];
+  private newsApiLanguages = ['en'];
 
   constructor(
     private newsApiService: NewsApiService,
@@ -38,11 +42,11 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchSubject
       .pipe(
-        debounceTime(300), // Wait 300ms after changes
+        debounceTime(300),
         switchMap(() => {
           this.isFetching = true;
           return this.selectedApi === 'newsapi'
-            ? this.newsApiService.getTopHeadlines(this.selectedCategory, '', this.selectedLanguage)
+            ? this.newsApiService.getTopHeadlines(this.selectedCategory, this.selectedLanguage)
             : this.currentsApiService.getLatestNews(this.selectedCategory, this.selectedLanguage);
         })
       )
@@ -57,8 +61,20 @@ export class NewsComponent implements OnInit {
         }
       );
 
-    // Initial fetch
     this.fetchNews();
+  }
+
+  // Dynamically get language options based on the selected API
+  get languageOptions(): string[] {
+    return this.selectedApi === 'newsapi' ? this.newsApiLanguages : this.currentsLanguages;
+  }
+
+  // Handle API selection
+  onApiChange(): void {
+    if (this.selectedApi === 'newsapi' && this.selectedLanguage !== 'en') {
+      this.selectedLanguage = 'en'; // Automatically set to English
+    }
+    this.fetchNews(); // Fetch news whenever API changes
   }
 
   fetchNews(): void {
@@ -68,8 +84,8 @@ export class NewsComponent implements OnInit {
   }
 
   onTabChange(index: number): void {
-    this.selectedCategory = this.categories[index]; // Update category based on selected tab
-    this.fetchNews(); // Fetch news for the selected category
+    this.selectedCategory = this.categories[index];
+    this.fetchNews();
   }
 
   toggleSettings(): void {

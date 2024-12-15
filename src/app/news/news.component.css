@@ -12,7 +12,6 @@ body, html {
 /* News List */
 #newsList {
     margin-top: 20px;
-    /* Additional adjustments for the news display */
 }
 
 /* Buttons */
@@ -28,15 +27,8 @@ body, html {
 }
 
 .btn-primary:hover {
-    background-color: #69839f;
+    background-color: #5c6cc6;
 }
-
-/* Spacing between the category tabs and settings */
-mat-tab-group {
-    margin-bottom: 1rem; /* Adds space between tabs and settings */
-    background-color: #7F8CD9;
-}
-
 
 /* Position tabs right under the header */
 .container {
@@ -55,3 +47,97 @@ mat-tab-group {
 .card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
 }
+
+/* Adjust the overall container of mat-tab-group */
+mat-tab-group {
+    margin-bottom: 1rem;
+    background-color: #7F8CD9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Tabs: Base styling */
+::ng-deep .mat-mdc-tab {
+    display: flex; /* Tabs are flexible containers */
+    align-items: center; /* Vertically center contents */
+    justify-content: center; /* Horizontally center contents */
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 16px 24px; /* Expand the clickable area */
+    height: 48px; /* Uniform tab height */
+    width: auto; /* Width depends on content */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative; /* For positioning child elements */
+    background-color: transparent; /* Default background */
+    transition: all 0.3s ease; /* Smooth hover transition */
+    z-index: 0; /* Ensure hover layers stack correctly */
+}
+
+/* Hover effect for larger individual tab area */
+::ng-deep .mat-mdc-tab:hover {
+    background-color: #5c6cc6; /* Highlight the tab background on hover */
+    color: #e0e0e0; /* Lighter text color on hover */
+    transform: scale(1.05); /* Slightly enlarge the tab */
+    z-index: 1; /* Ensure the hovered tab appears above others */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for emphasis */
+    border-radius: 8px; /* Slight rounding during hover */
+}
+
+/* Ensure the entire tab content responds to hover */
+::ng-deep .mat-mdc-tab .mdc-tab__content {
+    width: 100%; /* Content spans the entire tab */
+    height: 100%; /* Content spans the entire tab height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Ensure hover applies to the parent */
+}
+
+/* Remove underline completely */
+::ng-deep .mat-mdc-tab-indicator,
+::ng-deep .mdc-tab-indicator__content--underline {
+    display: none !important;
+    height: 0 !important;
+    background-color: transparent !important;
+}
+
+/* Prevent width changes when arrows are present */
+::ng-deep .mat-mdc-tab-group .mat-mdc-tab-header {
+    overflow: hidden; /* Prevent overflow */
+    display: flex; /* Align tabs and arrows correctly */
+    align-items: center; /* Vertically align tabs and arrows */
+    position: relative;
+}
+
+/* Tab scroller styling */
+::ng-deep .mat-mdc-tab-group .mat-mdc-tab-scroller {
+    display: flex; /* Tabs as flex containers */
+    flex: 1 1 auto; /* Tabs take up available space */
+    height: 48px; /* Same height as tabs */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Adjust scroll arrows */
+::ng-deep .mat-mdc-tab-group .mat-mdc-tab-header-pagination {
+    height: 48px; /* Same height as tabs */
+    width: 48px; /* Fixed width for arrows */
+    display: none; /* Initially hide arrows */
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Arrows stay the same size */
+}
+
+/* Display arrows only when scrolling is enabled */
+::ng-deep .mat-mdc-tab-group .mat-mdc-tab-header-pagination[aria-hidden="false"] {
+    display: flex !important; /* Show arrows when scrolling is possible */
+}
+
+/* Arrow styling */
+::ng-deep .mat-mdc-tab-group .mat-mdc-tab-header-pagination-chevron {
+    font-size: 24px;
+    line-height: 48px; /* Vertically align arrows */
+    color: #ffffff;
+}
+

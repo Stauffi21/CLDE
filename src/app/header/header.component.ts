@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   
+  // Random button welcher eine zufällige Page von Wikipedia öffnet
   loadRandomPage(): void {
     const randomUrl = 'https://de.wikipedia.org/wiki/Special:Random';
     window.open(randomUrl, '_blank');

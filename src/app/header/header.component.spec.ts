@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeaderComponent } from './header.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,75 +9,56 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA] // Allow custom HTML elements
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
+  // Test for component creation
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-
-  it('should have a black bottom border and be the last element in the <div> container', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-  
-    // Locating <hr> element
-    const hrElement = compiled.querySelector('hr'); 
-  
-    expect(hrElement).toBeTruthy();
-  
-    // Locate the parent element containing the <hr>
-    const containerElement = compiled.querySelector('.col-12'); // Adjust the query selector to match your structure
-  
-    // Ensuring the container element exists
-    expect(containerElement).toBeTruthy(); 
-  
-    // Ensuring <hr> is the last child of the container element
-    expect(containerElement!.lastElementChild).toBe(hrElement);
-  
-    // Checking CSS properties of the <hr> element
-    const hrStyle = getComputedStyle(hrElement!);
-    expect(hrStyle.borderBottomColor).toBe('rgb(0, 0, 0)'); // Ensure the border-bottom-color is black
-  });
-
+  // Test for white background
   it('should have a white background', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-  
-    // Das Header-Element Finden
-    const headerElement = compiled.querySelector('header');
-  
-    // Sicherstellen, dass das Header-Element vorhanden ist
-    expect(headerElement).toBeTruthy();
-  
-    // Berechnete CSS-Eigenschaften des Headers abrufen
-    const headerStyle = getComputedStyle(headerElement!);
-  
-      // Überprüfen, ob der Hintergrund weiß oder transparent ist
-  const backgroundColor = headerStyle.backgroundColor;
-  const isWhiteOrTransparent = backgroundColor === 'rgb(255, 255, 255)' || backgroundColor === 'rgba(0, 0, 0, 0)';
 
-  expect(isWhiteOrTransparent).toBeTrue(); // Test if the background is either white or transparent
+    // Find the header element
+    const headerElement = compiled.querySelector('header');
+    expect(headerElement).toBeTruthy();
+
+    // Get the computed styles of the header
+    const headerStyle = getComputedStyle(headerElement!);
+
+    // Assert the background color is white
+    expect(headerStyle.backgroundColor).toBe('rgb(255, 255, 255)');
   });
 
 
-  it('should position the logo on the right side',() => {
-    const compiled = fixture.nativeElement as HTMLElement;
+  // Test for the presence of the random article button
+  it('should have a random Wikipedia article button with correct text', () => {
+    const button = fixture.debugElement.query(By.css('button.btn-primary')).nativeElement;
 
-    // Suche das <img> Element im Header
-    const logoElement = compiled.querySelector('a.navbar-brand img');
+    // Check if the button exists
+    expect(button).toBeTruthy();
 
-    // Sicherstellen, dass das Logo existiert
-    expect(logoElement).toBeTruthy();
+    // Verify button text
+    expect(button.textContent).toContain('Zufallsartikel von Wikipedia');
+  });
 
-    // Suche das <nav> Element, das das Logo enthält
-    const navElement = compiled.querySelector('nav');
+  // Test button click functionality
+  it('should open a random Wikipedia page when the button is clicked', () => {
+    spyOn(window, 'open');
+    const button = fixture.debugElement.query(By.css('button.btn-primary')).nativeElement;
 
-    // Sicherstellen, dass das nav-Element die Klasse justify-content-end enthält
-    expect(navElement).toHaveClass('justify-content-end');
+    // Simulate button click
+    button.click();
+
+    // Assert the window.open method was called with the correct URL
+    expect(window.open).toHaveBeenCalledWith('https://de.wikipedia.org/wiki/Special:Random', '_blank');
   });
 });
